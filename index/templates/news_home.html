@@ -1,0 +1,37 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block title %}Новости на сайте{% endblock %}
+
+{% block content %}
+    <aside class="title_text">
+        <h1>ПЕРСОНАЛ, ДОСТУПНЫЙ ДЛЯ НАЙМА</h1>
+    </aside>
+    <aside class="main_img">
+        {% for el in products %}
+            <a href="{% url 'news-detail' el.id %}" class="btn btn-primary"><img class="portret" src="/{{ el.product_photo }}" alt="{{ el.product_name }}" /></a>
+        {% endfor %}
+    </aside>
+{% endblock %}
+
+{% block search %}
+    <form action="search" method="POST">
+        {% csrf_token %}
+        <input class="find" type="text" placeholder="Поиск по имени" name="search_product">
+    </form>
+{% endblock %}
+
+{% block tools %}
+<aside class="tools">
+    <h5>
+        ПРОФЕССИИ:
+        {% for category in categories %}
+            <a href="category/{{ category.id }}">{{ category.category_name }}</a>
+        {% endfor %}<br>
+        <br>СОТРУДНИКИ:
+        {% for product in products %}
+            <a href="product/{{ product.id }}">{{ product.product_name }}</a>
+        {% endfor %}
+    </h5>
+</aside>
+{% endblock %}

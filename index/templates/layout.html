@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <aside class="bar">
+        <aside class="bar1"><i class="fa-solid fa-magnifying-glass"></i> </aside>
+        <aside class="bar2"></aside>
+        <aside class="bar3"><a href="/"><i class="fa-solid fa-house"></i> MU TITLE</a></aside>
+        <aside class="bar4"><a href="/news_home" ><i class="fa-solid fa-people-group"></i> MU_TEAM</a></aside>
+        <aside class="bar5"><a href="/about"><i class="fa-solid fa-camera"></i> GALLERY </a></aside>
+        <aside class="bar6"><a href="/contacts"><i class="fa-solid fa-address-card"></i> CONTACTS</a></aside>
+        {% if user.is_authenticated %}
+            <aside class="bar8"><a href="/cart"><i class="fa-regular fa-user"></i> PROFILE </a></aside>
+            <aside class="bar9"><a href="accounts/logout/"><i class="fa-solid fa-right-from-bracket"></i> LOGOUT</a></aside>
+        {% else %}
+            <aside class="bar8"><a href="/register"><i class="fa-solid fa-clipboard"></i> REGISTER </a></aside>
+            <aside class="bar9"><a href="/accounts/login/"><i class="fa-solid fa-right-to-bracket"></i> SIGN IN </a></aside>
+        {% endif %}
+    </aside>
+
+    {% block content %}{% endblock %}
+    {% block tools %}{% endblock %}
+
+</body>
+</html>
