@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+
+{% block title %}Товары{% endblock %}
+
+{% block content %}
+    <aside class="title_text">
+        <h1>Интернет магазин Манчестер Юнайтед </h1>
+    </aside>
+#    <aside class="main_img">
+#        {% for el in products %}
+#            <img src="/{{ product.product_photo }}" alt="{{ product.product_name }}"/>
+#        {% endfor %}
+#    </aside>{% endblock %}
+
+{% block tools %}
+<aside class="tools">
+    <h5>
+        Позиции:
+        {% for category in categories %}
+            <a href="category/{{ category.id }}">{{ category.category_name }}</a>
+        {% endfor %}<br>
+    </h5>
+</aside>
+{% endblock %}
+
+
+
+
+
+
+

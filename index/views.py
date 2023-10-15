@@ -13,19 +13,21 @@ def home_page(request):
     context = {'form': search_bar, 'products': products, 'categories': categories}
     return render(request, 'index.html', context)
 
-def news_home(request):
-    search_bar = forms.SearchForm()
-    products = models.Product.objects.all()
-    categories = models.Category.objects.all()
-    context = {'form': search_bar, 'products': products, 'categories': categories}
-    return render(request, 'news_home.html', context)
 
-def about(request):
+def team(request):
     search_bar = forms.SearchForm()
     products = models.Product.objects.all()
     categories = models.Category.objects.all()
     context = {'form': search_bar, 'products': products, 'categories': categories}
-    return render(request, 'about.html', context)
+    return render(request, 'team.html', context)
+
+
+def magazine(request):
+    search_bar = forms.SearchForm()
+    products = models.Product.objects.all()
+    categories = models.Category.objects.all()
+    context = {'form': search_bar, 'products': products, 'categories': categories}
+    return render(request, 'magazine.html', context)
 
 def contacts(request):
     search_bar = forms.SearchForm()
@@ -43,17 +45,7 @@ def get_exact_category(request, pk):
 def get_exact_product(request, pk):
     search_bar = forms.SearchForm()
     product = models.Product.objects.get(id=pk)
-    city = product.product_city
-    API_TOKEN = '7d58c54b3c0c66b13dcff13b9c5134e7'
-    params = {'q': city, 'appid': API_TOKEN, 'units': 'metric'}
-    response = requests.get('https://api.openweathermap.org/data/2.5/weather', params=params)
-    x = response.json()
-    if x['weather'][0]['main'] == 'Clear':
-        p ='ясно'
-    else:
-        p ='облачно'
-    y = [city, p, x['main']['temp'], x['main']['pressure'], x['main']['humidity'], x['wind']['speed']]
-    context = {'product': product, 'Температура': y, 'form': search_bar}
+    context = {'product': product, 'form': search_bar}
     return render(request, 'exact_product.html', context)
 
 def search_product(request):
@@ -65,12 +57,15 @@ def search_product(request):
         except:
             return redirect('/')
 
+
 def add_to_cart(request, pk):
     if request.method == 'POST':
         checker = models.Product.objects.get(id=pk)
         product_amount_one = 1
-        models.Cart.objects.create(user_id=request.user.id, user_product=checker, user_product_count=product_amount_one).save()
-        return redirect('/news_home')
+        models.Cart.objects.create(user_id=request.user.id, user_product=checker,
+                                   user_product_count=product_amount_one).save()
+        return redirect('/magazine')
+
 
 def user_cart(request):
     cart = models.Cart.objects.filter(user_id=request.user.id)

@@ -1,10 +1,10 @@
 {% extends 'layout.html' %}
 
-{% block title %}Все работники по выбранной профессии{% endblock %}
+{% block title %}Футболисты по выбранной позиции{% endblock %}
 
 {% block content %}
     <aside class="title_text">
-        <h1>ВСЕ РАБОТНИКИ ПО ВЫБРАННОЙ ПРОФЕССИИ</h1>
+        <h1>ФУТБОЛИСТЫ ВЫБРАННОЙ ПОЗИЦИИ</h1>
     </aside>
     <aside class="main_img_3">
         {% for i in products %}
@@ -13,15 +13,24 @@
     </aside>
 {% endblock %}
 
+
+{% block search %}
+    <form action="search" method="POST">
+        {% csrf_token %}
+        <input class="find" type="text" placeholder="Поиск по имени" name="search_product">
+    </form>
+{% endblock %}
+
+
 {% block tools %}
-<aside class="tools_ex">
+<aside class="tools">
     <h5>
-        В данном разделе отображены все работники из общей базы данных, имеющие в своем резюме указанную профессиию.<br>
-        <br>
-        Для просмотра подробной информации кликните по заинтересовавшему вас работнику. База данных постоянно пополняется свежими резюме.
+        Позиции:
+        {% for category in categories %}
+            <a href="category/{{ category.id }}">{{ category.category_name }}</a>
+        {% endfor %}<br>
     </h5>
 </aside>
 {% endblock %}
-
 
 

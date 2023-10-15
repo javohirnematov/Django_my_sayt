@@ -10,23 +10,26 @@
 </head>
 <body>
     <aside class="bar">
-        <aside class="bar1"><i class="fa-solid fa-magnifying-glass"></i> </aside>
-        <aside class="bar2"></aside>
-        <aside class="bar3"><a href="/"><i class="fa-solid fa-house"></i> MU TITLE</a></aside>
-        <aside class="bar4"><a href="/news_home" ><i class="fa-solid fa-people-group"></i> MU_TEAM</a></aside>
-        <aside class="bar5"><a href="/about"><i class="fa-solid fa-camera"></i> GALLERY </a></aside>
-        <aside class="bar6"><a href="/contacts"><i class="fa-solid fa-address-card"></i> CONTACTS</a></aside>
+        <aside class="bar1"></i> MANCHESTER UNITED <br> UZBEKISTAN REDS </aside>
+        #<aside class="bar2"></aside>
+        <aside class="bar3"><a href="/"><i class="fa-solid fa-house"></i> Главная</a></aside>
+        <aside class="bar4"><a href="/team" ><i class="fa-solid fa-people-group"></i> Команда </a></aside>
+        <aside class="bar5"><a href="/magazine"><i class="fa-solid fa-address-card"></i> Магазин </a></aside>
+        <aside class="bar6"><a href="/contacts"><i class="fa-solid fa-paperclip"></i> Контакты </a></aside>
+        <aside class="bar7">{% block search %}{% endblock %}</aside>
         {% if user.is_authenticated %}
-            <aside class="bar8"><a href="/cart"><i class="fa-regular fa-user"></i> PROFILE </a></aside>
-            <aside class="bar9"><a href="accounts/logout/"><i class="fa-solid fa-right-from-bracket"></i> LOGOUT</a></aside>
+            <aside class="bar8"><a href="/cart"><i class="fa-solid fa-cart-shopping"></i> Заказы </a></aside>
+            <aside class="bar9"><a href="accounts/logout/"><i class="fa-solid fa-right-from-bracket"></i> Выйти</a></aside>
         {% else %}
-            <aside class="bar8"><a href="/register"><i class="fa-solid fa-clipboard"></i> REGISTER </a></aside>
-            <aside class="bar9"><a href="/accounts/login/"><i class="fa-solid fa-right-to-bracket"></i> SIGN IN </a></aside>
+            <aside class="bar8"><a href="/register"><i class="fa-solid fa-clipboard"></i> Регистрация</a></aside>
+            <aside class="bar9"><a href="/accounts/login/"><i class="fa-solid fa-right-to-bracket"></i> Войти</a></aside>
         {% endif %}
     </aside>
 
     {% block content %}{% endblock %}
     {% block tools %}{% endblock %}
 
+
 </body>
 </html>
+

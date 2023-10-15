@@ -1,10 +1,10 @@
 {% extends 'layout.html' %}
 
-{% block title %}Кандидаты на собеседование{% endblock %}
+{% block title %}ЗАКАЗЫ{% endblock %}
 
 {% block content %}
     <aside class="title_text">
-        <h1>КАНДИДАТЫ НА СОБЕСЕДОВАНИЕ</h1>
+        <h1> СПИСОК ВЫБРАННЫХ ТОВАРОВ </h1>
     </aside>
     <aside class="main_text_ex">
         {% for i in cart %}
@@ -13,19 +13,9 @@
         {% endfor %}
         <form method="POST">
             {% csrf_token %}
-            <button class="search"><i class="fa-brands fa-telegram"></i> Пригласить на собеседование</button>
+            <button class="search"><i class="fa-brands fa-telegram"></i> Оформить заказ </button>
         </form>
     </aside>
-{% endblock %}
-
-{% block tools %}
-<aside class="tools_ex">
-    <h5>
-        В данном разделе отображены все работники, которых вы отобрали для приема на работу.<br>
-        <br>
-        При нажатии на клавишу "Пригласить на собеседование" разработчику программы в Telegram придет сообщение со всеми выбранными кандидатами.
-    </h5>
-</aside>
 {% endblock %}
 
 {% block search %}
@@ -35,3 +25,13 @@
     </form>
 {% endblock %}
 
+{% block tools %}
+<aside class="tools">
+    <h5>
+        Позиции:
+        {% for category in categories %}
+            <a href="category/{{ category.id }}">{{ category.category_name }}</a>
+        {% endfor %}<br>
+    </h5>
+</aside>
+{% endblock %}
